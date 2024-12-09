@@ -11,7 +11,7 @@ func proxyHandler(w http.ResponseWriter, r *http.Request) {
 	client := &http.Client{}
 
 	// Задаем целевой URL (например, http://example.com)
-	targetURL := "http://example.com" + r.URL.Path // Прокси на другой сервер
+	targetURL := "https://openapi.mypay.kz" + r.URL.Path // Прокси на другой сервер
 
 	// Создаем новый запрос с теми же методами и заголовками
 	req, err := http.NewRequest(r.Method, targetURL, nil) // nil для GET-запроса
