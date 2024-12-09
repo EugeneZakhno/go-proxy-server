@@ -27,7 +27,7 @@ func proxyHandler(w http.ResponseWriter, r *http.Request) {
 
 	// Подмена заголовка X-Forwarded-For
 	if ip := r.RemoteAddr; ip != "" {
-		var myIP = "185.209.30.57"
+		var myIP = "185.209.30.57, 195.19.217.200"
 		req.Header.Set("X-Forwarded-For", myIP)
 	}
 
