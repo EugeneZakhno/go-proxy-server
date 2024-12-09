@@ -7,11 +7,14 @@ import (
 )
 
 func proxyHandler(w http.ResponseWriter, r *http.Request) {
-	// Создаем новый запрос на целевой сервер
+	// Создаем новый HTTP клиент
 	client := &http.Client{}
 
+	// Задаем целевой URL (например, http://example.com)
+	targetURL := "http://example.com" + r.URL.Path // Прокси на другой сервер
+
 	// Создаем новый запрос с теми же методами и заголовками
-	req, err := http.NewRequest(r.Method, r.URL.String(), r.Body)
+	req, err := http.NewRequest(r.Method, targetURL, nil) // nil для GET-запроса
 	if err != nil {
 		http.Error(w, "Error creating request", http.StatusInternalServerError)
 		return
