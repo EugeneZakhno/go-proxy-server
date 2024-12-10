@@ -11,7 +11,7 @@ func proxyHandler(w http.ResponseWriter, r *http.Request) {
 	client := &http.Client{}
 
 	// Задаем целевой URL (например, http://example.com)
-	targetURL := "https://openapi.mypay.kz/api/v4/ABRIVTIPS6C38D03FD1DAD0F42F47F0A/payment/MYO6QPZ3IWZGI5LW" + r.URL.Path // Прокси на другой сервер
+	targetURL := "https://openapi.mypay.kz" + r.URL.Path // Прокси на другой сервер
 
 	// Создаем новый запрос с теми же методами и заголовками
 	req, err := http.NewRequest(r.Method, targetURL, nil) // nil для GET-запроса
@@ -27,7 +27,7 @@ func proxyHandler(w http.ResponseWriter, r *http.Request) {
 
 	// Подмена заголовка X-Forwarded-For
 	if ip := r.RemoteAddr; ip != "" {
-		var myIP = "185.209.30.57, 195.19.217.200"
+		var myIP = "185.209.30.57"
 		req.Header.Set("X-Forwarded-For", myIP)
 	}
 
